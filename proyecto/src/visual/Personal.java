@@ -7,15 +7,19 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ButtonGroup;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JScrollBar;
+import javax.swing.JRadioButton;
 
 public class Personal extends JDialog {
 	private JTabbedPane tabbedPane;
@@ -31,7 +35,10 @@ public class Personal extends JDialog {
 	private JTextField SegundoApellido;
 	private JTextField PrimerApellido;
 	private JTextField txtNumeroDeCarnet;
-
+	private JLabel lblNewLabel;
+	private JRadioButton rdbtnFemenina;
+	private JRadioButton rdbtnMasculino;
+	private ButtonGroup groupFyM;
 	
 
 	
@@ -61,6 +68,10 @@ public class Personal extends JDialog {
 			panel.add(getSegundoApellido());
 			panel.add(getPrimerApellido());
 			panel.add(getTxtNumeroDeCarnet());
+			panel.add(getLblNewLabel());
+			panel.add(getRdbtnFemenina());
+			panel.add(getRdbtnMasculino());
+			groupFyM();
 		}
 		return panel;
 	}
@@ -93,24 +104,24 @@ public class Personal extends JDialog {
 	private JLabel getLblNombre() {
 		if (lblNombre == null) {
 			lblNombre = new JLabel("Nombre:");
-			lblNombre.setHorizontalAlignment(SwingConstants.TRAILING);
-			lblNombre.setBounds(41, 11, 59, 14);
+			lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
+			lblNombre.setBounds(27, 24, 73, 14);
 		}
 		return lblNombre;
 	}
 	private JLabel getLblApellidos() {
 		if (lblApellidos == null) {
-			lblApellidos = new JLabel("Apellidos:");
-			lblApellidos.setHorizontalAlignment(SwingConstants.TRAILING);
-			lblApellidos.setBounds(27, 36, 73, 14);
+			lblApellidos = new JLabel("1er apellido");
+			lblApellidos.setHorizontalAlignment(SwingConstants.RIGHT);
+			lblApellidos.setBounds(27, 65, 73, 14);
 		}
 		return lblApellidos;
 	}
 	private JLabel getLblCi() {
 		if (lblCi == null) {
 			lblCi = new JLabel("CI:");
-			lblCi.setHorizontalAlignment(SwingConstants.TRAILING);
-			lblCi.setBounds(52, 61, 48, 14);
+			lblCi.setHorizontalAlignment(SwingConstants.RIGHT);
+			lblCi.setBounds(27, 147, 73, 14);
 		}
 		return lblCi;
 	}
@@ -124,8 +135,7 @@ public class Personal extends JDialog {
 			});
 			
 			Nombre.setHorizontalAlignment(SwingConstants.CENTER);
-			Nombre.setText("Nombre");
-			Nombre.setBounds(112, 8, 147, 20);
+			Nombre.setBounds(112, 21, 182, 20);
 			Nombre.setColumns(10);
 		}
 		return Nombre;
@@ -139,8 +149,7 @@ public class Personal extends JDialog {
 				}
 			});
 			SegundoApellido.setHorizontalAlignment(SwingConstants.CENTER);
-			SegundoApellido.setText("Segundo Apellido");
-			SegundoApellido.setBounds(224, 33, 98, 20);
+			SegundoApellido.setBounds(110, 103, 182, 20);
 			SegundoApellido.setColumns(10);
 		}
 		return SegundoApellido;
@@ -154,8 +163,7 @@ public class Personal extends JDialog {
 				}
 			});
 			PrimerApellido.setHorizontalAlignment(SwingConstants.CENTER);
-			PrimerApellido.setText("Primer Apellido");
-			PrimerApellido.setBounds(112, 33, 86, 20);
+			PrimerApellido.setBounds(112, 62, 182, 20);
 			PrimerApellido.setColumns(10);
 		}
 		return PrimerApellido;
@@ -169,10 +177,39 @@ public class Personal extends JDialog {
 				}
 			});
 			txtNumeroDeCarnet.setHorizontalAlignment(SwingConstants.CENTER);
-			txtNumeroDeCarnet.setText("Numero De Carnet");
-			txtNumeroDeCarnet.setBounds(112, 58, 182, 20);
+			txtNumeroDeCarnet.setBounds(112, 144, 182, 20);
 			txtNumeroDeCarnet.setColumns(10);
 		}
 		return txtNumeroDeCarnet;
+	}
+	private JLabel getLblNewLabel() {
+		if (lblNewLabel == null) {
+			lblNewLabel = new JLabel("2do apellido:");
+			lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+			lblNewLabel.setBounds(27, 106, 73, 14);
+		}
+		return lblNewLabel;
+	}
+	private JRadioButton getRdbtnFemenina() {
+		if (rdbtnFemenina == null) {
+			rdbtnFemenina = new JRadioButton("Femenina");
+			rdbtnFemenina.setBounds(112, 185, 73, 23);
+		}
+		return rdbtnFemenina;
+	}
+	private JRadioButton getRdbtnMasculino() {
+		if (rdbtnMasculino == null) {
+			rdbtnMasculino = new JRadioButton("Masculino");
+			rdbtnMasculino.setBounds(204, 185, 90, 23);
+		}
+		return rdbtnMasculino;
+	}
+	private ButtonGroup groupFyM(){
+		if(groupFyM == null){
+			groupFyM = new ButtonGroup();
+			groupFyM.add(rdbtnFemenina);
+			groupFyM.add(rdbtnMasculino);
+		}
+		return groupFyM;
 	}
 }

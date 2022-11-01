@@ -1,33 +1,25 @@
 package visual;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.ButtonGroup;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.JScrollBar;
 import javax.swing.JRadioButton;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JTable;
 
 public class Personal extends JDialog {
 	private JTabbedPane tabbedPane;
 	private JPanel panel;
 	private JPanel panel_1;
 	private JPanel panel_2;
-	private JButton btnNewButton_1;
-	private JButton btnEchatepalistado;
 	private JLabel lblNombre;
 	private JLabel lblApellidos;
 	private JLabel lblCi;
@@ -39,6 +31,7 @@ public class Personal extends JDialog {
 	private JRadioButton rdbtnFemenina;
 	private JRadioButton rdbtnMasculino;
 	private ButtonGroup groupFyM;
+	private JTable table;
 	
 
 	
@@ -59,6 +52,7 @@ public class Personal extends JDialog {
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
+			setLocationRelativeTo(null);
 			panel = new JPanel();
 			panel.setLayout(null);
 			panel.add(getLblNombre());
@@ -78,28 +72,16 @@ public class Personal extends JDialog {
 	private JPanel getPanel_1() {
 		if (panel_1 == null) {
 			panel_1 = new JPanel();
-			panel_1.add(getBtnNewButton_1());
 		}
 		return panel_1;
 	}
 	private JPanel getPanel_2() {
 		if (panel_2 == null) {
 			panel_2 = new JPanel();
-			panel_2.add(getBtnEchatepalistado());
+			panel_2.setLayout(null);
+			panel_2.add(getTable());
 		}
 		return panel_2;
-	}
-	private JButton getBtnNewButton_1() {
-		if (btnNewButton_1 == null) {
-			btnNewButton_1 = new JButton("CreaTuTrabajador");
-		}
-		return btnNewButton_1;
-	}
-	private JButton getBtnEchatepalistado() {
-		if (btnEchatepalistado == null) {
-			btnEchatepalistado = new JButton("EchatePaListado");
-		}
-		return btnEchatepalistado;
 	}
 	private JLabel getLblNombre() {
 		if (lblNombre == null) {
@@ -211,5 +193,12 @@ public class Personal extends JDialog {
 			groupFyM.add(rdbtnMasculino);
 		}
 		return groupFyM;
+	}
+	private JTable getTable() {
+		if (table == null) {
+			table = new JTable();
+			table.setBounds(128, 143, -54, -49);
+		}
+		return table;
 	}
 }

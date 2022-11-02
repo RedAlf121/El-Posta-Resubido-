@@ -23,7 +23,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import java.awt.Color;
-import javax.swing.border.LineBorder;
 
 public class Personal extends JDialog {
 	private JTabbedPane tabbedPane;
@@ -50,9 +49,9 @@ public class Personal extends JDialog {
 	private JTextField workerID;
 	private JComboBox workerState;
 	private JComboBox studentState;
-	private JPanel panel_3;
+	private JPanel studentListPanel;
 	private JScrollPane scrollPane;
-	private JTable table_1;
+	private JTable studentListTable;
 	private JButton newStudent;
 	private JButton deleteStudent;
 	private JButton button;
@@ -63,6 +62,7 @@ public class Personal extends JDialog {
 	private JRadioButton workerFemale;
 	private JRadioButton workerMale;
 	private JButton newWorker;
+	private JPanel workerListPanel;
 	
 
 	
@@ -86,7 +86,7 @@ public class Personal extends JDialog {
 			studentPanel = new JPanel();
 			studentPanel.setLayout(null);
 			studentPanel.add(getNewStudentPanel());
-			studentPanel.add(getPanel_3());
+			studentPanel.add(getStudentListPanel());
 			groupFyM();
 		}
 		return studentPanel;
@@ -96,6 +96,7 @@ public class Personal extends JDialog {
 			workerPanel = new JPanel();
 			workerPanel.setLayout(null);
 			workerPanel.add(getPanel_2());
+			workerPanel.add(getPanel_5());
 		}
 		return workerPanel;
 	}
@@ -290,30 +291,30 @@ public class Personal extends JDialog {
 		}
 		return studentState;
 	}
-	private JPanel getPanel_3() {
-		if (panel_3 == null) {
-			panel_3 = new JPanel();
-			panel_3.setBorder(new TitledBorder(null, "Listado de estudiantes", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
-			panel_3.setBounds(269, 11, 450, 360);
-			panel_3.setLayout(null);
-			panel_3.add(getScrollPane());
-			panel_3.add(getButton());
-			panel_3.add(getDeleteStudent());
+	private JPanel getStudentListPanel() {
+		if (studentListPanel == null) {
+			studentListPanel = new JPanel();
+			studentListPanel.setBorder(new TitledBorder(null, "Listado de estudiantes", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
+			studentListPanel.setBounds(269, 11, 450, 360);
+			studentListPanel.setLayout(null);
+			studentListPanel.add(getScrollPane());
+			studentListPanel.add(getButton());
+			studentListPanel.add(getDeleteStudent());
 		}
-		return panel_3;
+		return studentListPanel;
 	}
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
 			scrollPane.setBounds(10, 25, 430, 269);
-			scrollPane.setViewportView(getTable_1());
+			scrollPane.setViewportView(getStudentListTable());
 		}
 		return scrollPane;
 	}
-	private JTable getTable_1() {
-		if (table_1 == null) {
-			table_1 = new JTable();
-			table_1.setModel(new DefaultTableModel(
+	private JTable getStudentListTable() {
+		if (studentListTable == null) {
+			studentListTable = new JTable();
+			studentListTable.setModel(new DefaultTableModel(
 				new Object[][] {
 					{null, null, null, null, null, null},
 					{null, null, null, null, null, null},
@@ -328,7 +329,7 @@ public class Personal extends JDialog {
 				}
 			));
 		}
-		return table_1;
+		return studentListTable;
 	}
 	private JButton getNewStudent() {
 		if (newStudent == null) {
@@ -433,5 +434,14 @@ public class Personal extends JDialog {
 			newWorker.setBounds(135, 326, 85, 23);
 		}
 		return newWorker;
+	}
+	private JPanel getPanel_5() {
+		if (workerListPanel == null) {
+			workerListPanel = new JPanel();
+			workerListPanel.setBorder(new TitledBorder(null, "Lista de trabajadores", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
+			workerListPanel.setBounds(260, 10, 459, 360);
+			workerListPanel.setLayout(null);
+		}
+		return workerListPanel;
 	}
 }

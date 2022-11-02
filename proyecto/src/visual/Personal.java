@@ -18,6 +18,11 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import utils.StatesWorker;
 import utils.StatesStudent;
+import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.border.TitledBorder;
+import java.awt.Color;
 
 public class Personal extends JDialog {
 	private JTabbedPane tabbedPane;
@@ -48,18 +53,26 @@ public class Personal extends JDialog {
 	private JTextField textField_4;
 	private JComboBox comboBox;
 	private JComboBox comboBox_1;
+	private JPanel panel_3;
+	private JScrollPane scrollPane;
+	private JTable table_1;
+	private JButton btnNewButton;
+	private JButton btnNewButton_1;
+	private JButton button;
+	private JPanel panel_4;
+	private JLabel lblEstado;
 	
 
 	
 	public Personal() {
-		setBounds(100, 100, 320, 398);
+		setBounds(100, 100, 750, 429);
 		getContentPane().setLayout(null);
 		getContentPane().add(getTabbedPane());
 	}
 	private JTabbedPane getTabbedPane() {
 		if (tabbedPane == null) {
 			tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-			tabbedPane.setBounds(0, 0, 304, 359);
+			tabbedPane.setBounds(0, 0, 734, 392);
 			tabbedPane.addTab("Estudiante", null, getPanel(), "");
 			tabbedPane.addTab("Trabajador", null, getPanel_1(), null);
 			tabbedPane.addTab("Listado", null, getPanel_2(), null);
@@ -71,17 +84,8 @@ public class Personal extends JDialog {
 			setLocationRelativeTo(null);
 			panel = new JPanel();
 			panel.setLayout(null);
-			panel.add(getLblNombre());
-			panel.add(getLblApellidos());
-			panel.add(getLblCi());
-			panel.add(getNombre());
-			panel.add(getSegundoApellido());
-			panel.add(getPrimerApellido());
-			panel.add(getTxtNumeroDeCarnet());
-			panel.add(getLblNewLabel());
-			panel.add(getRdbtnFemenina());
-			panel.add(getRdbtnMasculino());
-			panel.add(getComboBox_1());
+			panel.add(getPanel_4());
+			panel.add(getPanel_3());
 			groupFyM();
 		}
 		return panel;
@@ -115,30 +119,31 @@ public class Personal extends JDialog {
 	private JLabel getLblNombre() {
 		if (lblNombre == null) {
 			lblNombre = new JLabel("Nombre:");
+			lblNombre.setBounds(20, 30, 41, 14);
 			lblNombre.setHorizontalAlignment(SwingConstants.LEFT);
-			lblNombre.setBounds(42, 11, 73, 14);
 		}
 		return lblNombre;
 	}
 	private JLabel getLblApellidos() {
 		if (lblApellidos == null) {
-			lblApellidos = new JLabel("1er apellido");
+			lblApellidos = new JLabel("1er apellido:");
+			lblApellidos.setBounds(20, 76, 71, 14);
 			lblApellidos.setHorizontalAlignment(SwingConstants.LEFT);
-			lblApellidos.setBounds(42, 55, 73, 14);
 		}
 		return lblApellidos;
 	}
 	private JLabel getLblCi() {
 		if (lblCi == null) {
 			lblCi = new JLabel("CI:");
+			lblCi.setBounds(20, 170, 15, 14);
 			lblCi.setHorizontalAlignment(SwingConstants.LEFT);
-			lblCi.setBounds(42, 147, 73, 14);
 		}
 		return lblCi;
 	}
 	private JTextField getNombre() {
 		if (Nombre == null) {
 			Nombre = new JTextField();
+			Nombre.setBounds(20, 46, 201, 20);
 			Nombre.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0) {
 					Nombre.setText("");
@@ -146,7 +151,6 @@ public class Personal extends JDialog {
 			});
 			
 			Nombre.setHorizontalAlignment(SwingConstants.CENTER);
-			Nombre.setBounds(42, 24, 210, 20);
 			Nombre.setColumns(10);
 		}
 		return Nombre;
@@ -154,13 +158,13 @@ public class Personal extends JDialog {
 	private JTextField getSegundoApellido() {
 		if (SegundoApellido == null) {
 			SegundoApellido = new JTextField();
+			SegundoApellido.setBounds(20, 92, 201, 20);
 			SegundoApellido.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0) {
 					SegundoApellido.setText("");
 				}
 			});
 			SegundoApellido.setHorizontalAlignment(SwingConstants.CENTER);
-			SegundoApellido.setBounds(42, 116, 210, 20);
 			SegundoApellido.setColumns(10);
 		}
 		return SegundoApellido;
@@ -168,13 +172,13 @@ public class Personal extends JDialog {
 	private JTextField getPrimerApellido() {
 		if (PrimerApellido == null) {
 			PrimerApellido = new JTextField();
+			PrimerApellido.setBounds(20, 188, 201, 20);
 			PrimerApellido.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0) {
 					PrimerApellido.setText("");
 				}
 			});
 			PrimerApellido.setHorizontalAlignment(SwingConstants.CENTER);
-			PrimerApellido.setBounds(42, 69, 210, 20);
 			PrimerApellido.setColumns(10);
 		}
 		return PrimerApellido;
@@ -182,13 +186,13 @@ public class Personal extends JDialog {
 	private JTextField getTxtNumeroDeCarnet() {
 		if (txtNumeroDeCarnet == null) {
 			txtNumeroDeCarnet = new JTextField();
+			txtNumeroDeCarnet.setBounds(18, 140, 203, 20);
 			txtNumeroDeCarnet.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0) {
 					txtNumeroDeCarnet.setText("");
 				}
 			});
 			txtNumeroDeCarnet.setHorizontalAlignment(SwingConstants.CENTER);
-			txtNumeroDeCarnet.setBounds(42, 159, 210, 20);
 			txtNumeroDeCarnet.setColumns(10);
 		}
 		return txtNumeroDeCarnet;
@@ -196,22 +200,22 @@ public class Personal extends JDialog {
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("2do apellido:");
+			lblNewLabel.setBounds(20, 122, 61, 14);
 			lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-			lblNewLabel.setBounds(42, 100, 73, 14);
 		}
 		return lblNewLabel;
 	}
 	private JRadioButton getRdbtnFemenina() {
 		if (rdbtnFemenina == null) {
 			rdbtnFemenina = new JRadioButton("Femenina");
-			rdbtnFemenina.setBounds(42, 218, 90, 23);
+			rdbtnFemenina.setBounds(148, 237, 71, 23);
 		}
 		return rdbtnFemenina;
 	}
 	private JRadioButton getRdbtnMasculino() {
 		if (rdbtnMasculino == null) {
 			rdbtnMasculino = new JRadioButton("Masculino");
-			rdbtnMasculino.setBounds(42, 189, 90, 23);
+			rdbtnMasculino.setBounds(150, 263, 71, 23);
 		}
 		return rdbtnMasculino;
 	}
@@ -321,9 +325,103 @@ public class Personal extends JDialog {
 	private JComboBox getComboBox_1() {
 		if (comboBox_1 == null) {
 			comboBox_1 = new JComboBox();
+			comboBox_1.setBounds(20, 238, 99, 20);
 			comboBox_1.setModel(new DefaultComboBoxModel(StatesStudent.values()));
-			comboBox_1.setBounds(141, 190, 111, 20);
 		}
 		return comboBox_1;
+	}
+	private JPanel getPanel_3() {
+		if (panel_3 == null) {
+			panel_3 = new JPanel();
+			panel_3.setBorder(new TitledBorder(null, "Listado de estudiantes", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
+			panel_3.setBounds(269, 11, 450, 344);
+			panel_3.setLayout(null);
+			panel_3.add(getScrollPane());
+			panel_3.add(getButton());
+			panel_3.add(getBtnNewButton_1());
+		}
+		return panel_3;
+	}
+	private JScrollPane getScrollPane() {
+		if (scrollPane == null) {
+			scrollPane = new JScrollPane();
+			scrollPane.setBounds(10, 25, 430, 269);
+			scrollPane.setViewportView(getTable_1());
+		}
+		return scrollPane;
+	}
+	private JTable getTable_1() {
+		if (table_1 == null) {
+			table_1 = new JTable();
+			table_1.setModel(new DefaultTableModel(
+				new Object[][] {
+					{null, null, null, null, null, null},
+					{null, null, null, null, null, null},
+					{null, null, null, null, null, null},
+					{null, null, null, null, null, null},
+					{null, null, null, null, null, null},
+					{null, null, null, null, null, null},
+					{null, null, null, null, null, null},
+				},
+				new String[] {
+					"New column", "New column", "New column", "New column", "New column", "New column"
+				}
+			));
+		}
+		return table_1;
+	}
+	private JButton getBtnNewButton() {
+		if (btnNewButton == null) {
+			btnNewButton = new JButton("New button");
+			btnNewButton.setBounds(132, 305, 89, 23);
+		}
+		return btnNewButton;
+	}
+	private JButton getBtnNewButton_1() {
+		if (btnNewButton_1 == null) {
+			btnNewButton_1 = new JButton("New button");
+			btnNewButton_1.setBounds(351, 305, 89, 23);
+			btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				}
+			});
+		}
+		return btnNewButton_1;
+	}
+	private JButton getButton() {
+		if (button == null) {
+			button = new JButton("New button");
+			button.setBounds(252, 305, 89, 23);
+		}
+		return button;
+	}
+	private JPanel getPanel_4() {
+		if (panel_4 == null) {
+			panel_4 = new JPanel();
+			panel_4.setBorder(new TitledBorder(null, "Nuevo estudiante", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
+			panel_4.setBounds(10, 11, 236, 344);
+			panel_4.setLayout(null);
+			panel_4.add(getLblNombre());
+			panel_4.add(getLblApellidos());
+			panel_4.add(getLblCi());
+			panel_4.add(getNombre());
+			panel_4.add(getSegundoApellido());
+			panel_4.add(getPrimerApellido());
+			panel_4.add(getTxtNumeroDeCarnet());
+			panel_4.add(getLblNewLabel());
+			panel_4.add(getRdbtnFemenina());
+			panel_4.add(getRdbtnMasculino());
+			panel_4.add(getComboBox_1());
+			panel_4.add(getBtnNewButton());
+			panel_4.add(getLblEstado());
+		}
+		return panel_4;
+	}
+	private JLabel getLblEstado() {
+		if (lblEstado == null) {
+			lblEstado = new JLabel("Estado:");
+			lblEstado.setBounds(20, 220, 46, 14);
+		}
+		return lblEstado;
 	}
 }

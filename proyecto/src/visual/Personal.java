@@ -23,322 +23,282 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import java.awt.Color;
+import javax.swing.border.LineBorder;
 
 public class Personal extends JDialog {
 	private JTabbedPane tabbedPane;
-	private JPanel panel;
-	private JPanel panel_1;
-	private JPanel panel_2;
-	private JLabel lblNombre;
-	private JLabel lblApellidos;
-	private JLabel lblCi;
-	private JTextField Nombre;
-	private JTextField SegundoApellido;
-	private JTextField PrimerApellido;
-	private JTextField txtNumeroDeCarnet;
-	private JLabel lblNewLabel;
-	private JRadioButton rdbtnFemenina;
-	private JRadioButton rdbtnMasculino;
+	private JPanel studentPanel;
+	private JPanel workerPanel;
+	private JLabel lblStudentName;
+	private JLabel lblLastName;
+	private JLabel lblStudentID;
+	private JTextField studentName;
+	private JTextField studentLastName;
+	private JTextField studentID;
+	private JTextField studentSecLastName;
+	private JLabel lblSecLastName;
+	private JRadioButton studentFemale;
+	private JRadioButton studentMale;
 	private ButtonGroup groupFyM;
-	private JTable table;
-	private JLabel lblNewLabel_1;
-	private JTextField textField;
-	private JLabel lblNewLabel_2;
-	private JTextField textField_1;
-	private JLabel lblNewLabel_3;
-	private JTextField textField_2;
-	private JLabel lblNewLabel_4;
-	private JTextField textField_3;
-	private JLabel lblNewLabel_5;
-	private JTextField textField_4;
-	private JComboBox comboBox;
-	private JComboBox comboBox_1;
+	private JLabel lblWorkerLastName;
+	private JTextField workerName;
+	private JLabel lblworkerSecLastName;
+	private JTextField workerLastName;
+	private JLabel lblWorkerName;
+	private JLabel lblWorkerID;
+	private JTextField workerSecLastName;
+	private JTextField workerID;
+	private JComboBox workerState;
+	private JComboBox studentState;
 	private JPanel panel_3;
 	private JScrollPane scrollPane;
 	private JTable table_1;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
+	private JButton newStudent;
+	private JButton deleteStudent;
 	private JButton button;
-	private JPanel panel_4;
-	private JLabel lblEstado;
+	private JPanel newStudentPanel;
+	private JLabel lblStudentState;
+	private JPanel newWorkerPanel;
+	private JLabel lblWorkerState;
+	private JRadioButton workerFemale;
+	private JRadioButton workerMale;
+	private JButton newWorker;
 	
 
 	
 	public Personal() {
-		setBounds(100, 100, 750, 429);
+		setBounds(100, 100, 750, 450);
 		getContentPane().setLayout(null);
 		getContentPane().add(getTabbedPane());
 	}
 	private JTabbedPane getTabbedPane() {
 		if (tabbedPane == null) {
 			tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-			tabbedPane.setBounds(0, 0, 734, 392);
-			tabbedPane.addTab("Estudiante", null, getPanel(), "");
-			tabbedPane.addTab("Trabajador", null, getPanel_1(), null);
-			tabbedPane.addTab("Listado", null, getPanel_2(), null);
+			tabbedPane.setBounds(0, 0, 734, 411);
+			tabbedPane.addTab("Estudiante", null, getStudentPanel(), "");
+			tabbedPane.addTab("Trabajador", null, getWorkerPanel(), null);
 		}
 		return tabbedPane;
 	}
-	private JPanel getPanel() {
-		if (panel == null) {
+	private JPanel getStudentPanel() {
+		if (studentPanel == null) {
 			setLocationRelativeTo(null);
-			panel = new JPanel();
-			panel.setLayout(null);
-			panel.add(getPanel_4());
-			panel.add(getPanel_3());
+			studentPanel = new JPanel();
+			studentPanel.setLayout(null);
+			studentPanel.add(getNewStudentPanel());
+			studentPanel.add(getPanel_3());
 			groupFyM();
 		}
-		return panel;
+		return studentPanel;
 	}
-	private JPanel getPanel_1() {
-		if (panel_1 == null) {
-			panel_1 = new JPanel();
-			panel_1.setLayout(null);
-			panel_1.add(getLblNewLabel_1());
-			panel_1.add(getTextField());
-			panel_1.add(getLblNewLabel_2());
-			panel_1.add(getTextField_1());
-			panel_1.add(getLblNewLabel_3());
-			panel_1.add(getTextField_2());
-			panel_1.add(getLblNewLabel_4());
-			panel_1.add(getTextField_3());
-			panel_1.add(getLblNewLabel_5());
-			panel_1.add(getTextField_4());
-			panel_1.add(getComboBox());
+	private JPanel getWorkerPanel() {
+		if (workerPanel == null) {
+			workerPanel = new JPanel();
+			workerPanel.setLayout(null);
+			workerPanel.add(getPanel_2());
 		}
-		return panel_1;
+		return workerPanel;
 	}
-	private JPanel getPanel_2() {
-		if (panel_2 == null) {
-			panel_2 = new JPanel();
-			panel_2.setLayout(null);
-			panel_2.add(getTable());
+	private JLabel getLblStudentName() {
+		if (lblStudentName == null) {
+			lblStudentName = new JLabel("Nombre:");
+			lblStudentName.setBounds(20, 30, 71, 14);
+			lblStudentName.setHorizontalAlignment(SwingConstants.LEFT);
 		}
-		return panel_2;
+		return lblStudentName;
 	}
-	private JLabel getLblNombre() {
-		if (lblNombre == null) {
-			lblNombre = new JLabel("Nombre:");
-			lblNombre.setBounds(20, 30, 41, 14);
-			lblNombre.setHorizontalAlignment(SwingConstants.LEFT);
+	private JLabel getLblLastName() {
+		if (lblLastName == null) {
+			lblLastName = new JLabel("1er apellido:");
+			lblLastName.setBounds(20, 76, 71, 14);
+			lblLastName.setHorizontalAlignment(SwingConstants.LEFT);
 		}
-		return lblNombre;
+		return lblLastName;
 	}
-	private JLabel getLblApellidos() {
-		if (lblApellidos == null) {
-			lblApellidos = new JLabel("1er apellido:");
-			lblApellidos.setBounds(20, 76, 71, 14);
-			lblApellidos.setHorizontalAlignment(SwingConstants.LEFT);
+	private JLabel getLblStudentID() {
+		if (lblStudentID == null) {
+			lblStudentID = new JLabel("CI:");
+			lblStudentID.setBounds(20, 170, 71, 14);
+			lblStudentID.setHorizontalAlignment(SwingConstants.LEFT);
 		}
-		return lblApellidos;
+		return lblStudentID;
 	}
-	private JLabel getLblCi() {
-		if (lblCi == null) {
-			lblCi = new JLabel("CI:");
-			lblCi.setBounds(20, 170, 15, 14);
-			lblCi.setHorizontalAlignment(SwingConstants.LEFT);
-		}
-		return lblCi;
-	}
-	private JTextField getNombre() {
-		if (Nombre == null) {
-			Nombre = new JTextField();
-			Nombre.setBounds(20, 46, 201, 20);
-			Nombre.addMouseListener(new MouseAdapter() {
+	private JTextField getStudentName() {
+		if (studentName == null) {
+			studentName = new JTextField();
+			studentName.setBounds(20, 46, 200, 20);
+			studentName.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0) {
-					Nombre.setText("");
+					studentName.setText("");
 				}
 			});
 			
-			Nombre.setHorizontalAlignment(SwingConstants.CENTER);
-			Nombre.setColumns(10);
+			studentName.setHorizontalAlignment(SwingConstants.CENTER);
+			studentName.setColumns(10);
 		}
-		return Nombre;
+		return studentName;
 	}
-	private JTextField getSegundoApellido() {
-		if (SegundoApellido == null) {
-			SegundoApellido = new JTextField();
-			SegundoApellido.setBounds(20, 92, 201, 20);
-			SegundoApellido.addMouseListener(new MouseAdapter() {
+	private JTextField getStudentLastName() {
+		if (studentLastName == null) {
+			studentLastName = new JTextField();
+			studentLastName.setBounds(20, 92, 200, 20);
+			studentLastName.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0) {
-					SegundoApellido.setText("");
+					studentLastName.setText("");
 				}
 			});
-			SegundoApellido.setHorizontalAlignment(SwingConstants.CENTER);
-			SegundoApellido.setColumns(10);
+			studentLastName.setHorizontalAlignment(SwingConstants.CENTER);
+			studentLastName.setColumns(10);
 		}
-		return SegundoApellido;
+		return studentLastName;
 	}
-	private JTextField getPrimerApellido() {
-		if (PrimerApellido == null) {
-			PrimerApellido = new JTextField();
-			PrimerApellido.setBounds(20, 188, 201, 20);
-			PrimerApellido.addMouseListener(new MouseAdapter() {
+	private JTextField getStudentID() {
+		if (studentID == null) {
+			studentID = new JTextField();
+			studentID.setBounds(20, 188, 200, 20);
+			studentID.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0) {
-					PrimerApellido.setText("");
+					studentID.setText("");
 				}
 			});
-			PrimerApellido.setHorizontalAlignment(SwingConstants.CENTER);
-			PrimerApellido.setColumns(10);
+			studentID.setHorizontalAlignment(SwingConstants.CENTER);
+			studentID.setColumns(10);
 		}
-		return PrimerApellido;
+		return studentID;
 	}
-	private JTextField getTxtNumeroDeCarnet() {
-		if (txtNumeroDeCarnet == null) {
-			txtNumeroDeCarnet = new JTextField();
-			txtNumeroDeCarnet.setBounds(18, 140, 203, 20);
-			txtNumeroDeCarnet.addMouseListener(new MouseAdapter() {
+	private JTextField getStudentSecLastName() {
+		if (studentSecLastName == null) {
+			studentSecLastName = new JTextField();
+			studentSecLastName.setBounds(20, 140, 200, 20);
+			studentSecLastName.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent arg0) {
-					txtNumeroDeCarnet.setText("");
+					studentSecLastName.setText("");
 				}
 			});
-			txtNumeroDeCarnet.setHorizontalAlignment(SwingConstants.CENTER);
-			txtNumeroDeCarnet.setColumns(10);
+			studentSecLastName.setHorizontalAlignment(SwingConstants.CENTER);
+			studentSecLastName.setColumns(10);
 		}
-		return txtNumeroDeCarnet;
+		return studentSecLastName;
 	}
-	private JLabel getLblNewLabel() {
-		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("2do apellido:");
-			lblNewLabel.setBounds(20, 122, 61, 14);
-			lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+	private JLabel getLblSecLastName() {
+		if (lblSecLastName == null) {
+			lblSecLastName = new JLabel("2do apellido:");
+			lblSecLastName.setBounds(20, 122, 71, 14);
+			lblSecLastName.setHorizontalAlignment(SwingConstants.LEFT);
 		}
-		return lblNewLabel;
+		return lblSecLastName;
 	}
-	private JRadioButton getRdbtnFemenina() {
-		if (rdbtnFemenina == null) {
-			rdbtnFemenina = new JRadioButton("Femenina");
-			rdbtnFemenina.setBounds(148, 237, 71, 23);
+	private JRadioButton getStudentFemale() {
+		if (studentFemale == null) {
+			studentFemale = new JRadioButton("Femenina");
+			studentFemale.setBounds(135, 237, 86, 23);
 		}
-		return rdbtnFemenina;
+		return studentFemale;
 	}
-	private JRadioButton getRdbtnMasculino() {
-		if (rdbtnMasculino == null) {
-			rdbtnMasculino = new JRadioButton("Masculino");
-			rdbtnMasculino.setBounds(150, 263, 71, 23);
+	private JRadioButton getStudentMale() {
+		if (studentMale == null) {
+			studentMale = new JRadioButton("Masculino");
+			studentMale.setBounds(135, 265, 86, 23);
 		}
-		return rdbtnMasculino;
+		return studentMale;
 	}
 	private ButtonGroup groupFyM(){
 		if(groupFyM == null){
 			groupFyM = new ButtonGroup();
-			groupFyM.add(rdbtnFemenina);
-			groupFyM.add(rdbtnMasculino);
+			groupFyM.add(studentFemale);
+			groupFyM.add(studentMale);
 		}
 		return groupFyM;
 	}
-	private JTable getTable() {
-		if (table == null) {
-			table = new JTable();
-			table.setBounds(128, 143, -54, -49);
+	private JLabel getLblWorkerLastName() {
+		if (lblWorkerLastName == null) {
+			lblWorkerLastName = new JLabel("1er apellido:");
+			lblWorkerLastName.setBounds(20, 76, 71, 14);
+			lblWorkerLastName.setHorizontalAlignment(SwingConstants.LEFT);
 		}
-		return table;
+		return lblWorkerLastName;
 	}
-	private JLabel getLblNewLabel_1() {
-		if (lblNewLabel_1 == null) {
-			lblNewLabel_1 = new JLabel("1er apellido:");
-			lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
-			lblNewLabel_1.setBounds(47, 55, 76, 14);
+	private JTextField getWorkerName() {
+		if (workerName == null) {
+			workerName = new JTextField();
+			workerName.setBounds(20, 46, 200, 20);
+			workerName.setColumns(10);
 		}
-		return lblNewLabel_1;
+		return workerName;
 	}
-	private JTextField getTextField() {
-		if (textField == null) {
-			textField = new JTextField();
-			textField.setBounds(47, 24, 213, 20);
-			textField.setColumns(10);
+	private JLabel getLblworkerSecLastName() {
+		if (lblworkerSecLastName == null) {
+			lblworkerSecLastName = new JLabel("2do apellido:");
+			lblworkerSecLastName.setBounds(20, 122, 71, 14);
+			lblworkerSecLastName.setHorizontalAlignment(SwingConstants.LEFT);
 		}
-		return textField;
+		return lblworkerSecLastName;
 	}
-	private JLabel getLblNewLabel_2() {
-		if (lblNewLabel_2 == null) {
-			lblNewLabel_2 = new JLabel("2do apellido:");
-			lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
-			lblNewLabel_2.setBounds(47, 142, 76, 14);
+	private JTextField getWorkerLastName() {
+		if (workerLastName == null) {
+			workerLastName = new JTextField();
+			workerLastName.setBounds(20, 92, 200, 20);
+			workerLastName.setColumns(10);
 		}
-		return lblNewLabel_2;
+		return workerLastName;
 	}
-	private JTextField getTextField_1() {
-		if (textField_1 == null) {
-			textField_1 = new JTextField();
-			textField_1.setBounds(47, 68, 213, 20);
-			textField_1.setColumns(10);
+	private JLabel getLblWorkerName() {
+		if (lblWorkerName == null) {
+			lblWorkerName = new JLabel("Nombre: ");
+			lblWorkerName.setBounds(20, 30, 59, 14);
+			lblWorkerName.setHorizontalAlignment(SwingConstants.LEFT);
 		}
-		return textField_1;
+		return lblWorkerName;
 	}
-	private JLabel getLblNewLabel_3() {
-		if (lblNewLabel_3 == null) {
-			lblNewLabel_3 = new JLabel("Nombre: ");
-			lblNewLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
-			lblNewLabel_3.setBounds(47, 11, 76, 14);
+	private JLabel getLblWorkerID() {
+		if (lblWorkerID == null) {
+			lblWorkerID = new JLabel("CI:");
+			lblWorkerID.setBounds(20, 170, 59, 14);
+			lblWorkerID.setHorizontalAlignment(SwingConstants.LEFT);
 		}
-		return lblNewLabel_3;
+		return lblWorkerID;
 	}
-	private JTextField getTextField_2() {
-		if (textField_2 == null) {
-			textField_2 = new JTextField();
-			textField_2.setBounds(47, 238, 213, 20);
-			textField_2.setColumns(10);
+	private JTextField getWorkerSecLastName() {
+		if (workerSecLastName == null) {
+			workerSecLastName = new JTextField();
+			workerSecLastName.setBounds(20, 140, 200, 20);
+			workerSecLastName.setColumns(10);
 		}
-		return textField_2;
+		return workerSecLastName;
 	}
-	private JLabel getLblNewLabel_4() {
-		if (lblNewLabel_4 == null) {
-			lblNewLabel_4 = new JLabel("CI:");
-			lblNewLabel_4.setHorizontalAlignment(SwingConstants.LEFT);
-			lblNewLabel_4.setBounds(47, 99, 46, 14);
+	private JTextField getWorkerID() {
+		if (workerID == null) {
+			workerID = new JTextField();
+			workerID.setBounds(20, 188, 200, 20);
+			workerID.setColumns(10);
 		}
-		return lblNewLabel_4;
+		return workerID;
 	}
-	private JTextField getTextField_3() {
-		if (textField_3 == null) {
-			textField_3 = new JTextField();
-			textField_3.setBounds(47, 111, 213, 20);
-			textField_3.setColumns(10);
+	private JComboBox getWorkerState() {
+		if (workerState == null) {
+			workerState = new JComboBox();
+			workerState.setBounds(20, 238, 99, 20);
+			workerState.setModel(new DefaultComboBoxModel(StatesWorker.values()));
 		}
-		return textField_3;
+		return workerState;
 	}
-	private JLabel getLblNewLabel_5() {
-		if (lblNewLabel_5 == null) {
-			lblNewLabel_5 = new JLabel("D\u00EDa de retorno:");
-			lblNewLabel_5.setHorizontalAlignment(SwingConstants.LEFT);
-			lblNewLabel_5.setBounds(47, 225, 97, 14);
+	private JComboBox getStudentState() {
+		if (studentState == null) {
+			studentState = new JComboBox();
+			studentState.setBounds(20, 238, 99, 20);
+			studentState.setModel(new DefaultComboBoxModel(StatesStudent.values()));
 		}
-		return lblNewLabel_5;
-	}
-	private JTextField getTextField_4() {
-		if (textField_4 == null) {
-			textField_4 = new JTextField();
-			textField_4.setBounds(47, 155, 213, 20);
-			textField_4.setColumns(10);
-		}
-		return textField_4;
-	}
-	private JComboBox getComboBox() {
-		if (comboBox == null) {
-			comboBox = new JComboBox();
-			comboBox.setModel(new DefaultComboBoxModel(StatesWorker.values()));
-			comboBox.setBounds(47, 196, 156, 20);
-		}
-		return comboBox;
-	}
-	private JComboBox getComboBox_1() {
-		if (comboBox_1 == null) {
-			comboBox_1 = new JComboBox();
-			comboBox_1.setBounds(20, 238, 99, 20);
-			comboBox_1.setModel(new DefaultComboBoxModel(StatesStudent.values()));
-		}
-		return comboBox_1;
+		return studentState;
 	}
 	private JPanel getPanel_3() {
 		if (panel_3 == null) {
 			panel_3 = new JPanel();
 			panel_3.setBorder(new TitledBorder(null, "Listado de estudiantes", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
-			panel_3.setBounds(269, 11, 450, 344);
+			panel_3.setBounds(269, 11, 450, 360);
 			panel_3.setLayout(null);
 			panel_3.add(getScrollPane());
 			panel_3.add(getButton());
-			panel_3.add(getBtnNewButton_1());
+			panel_3.add(getDeleteStudent());
 		}
 		return panel_3;
 	}
@@ -370,58 +330,108 @@ public class Personal extends JDialog {
 		}
 		return table_1;
 	}
-	private JButton getBtnNewButton() {
-		if (btnNewButton == null) {
-			btnNewButton = new JButton("New button");
-			btnNewButton.setBounds(132, 305, 89, 23);
+	private JButton getNewStudent() {
+		if (newStudent == null) {
+			newStudent = new JButton("Agregar");
+			newStudent.setBounds(135, 326, 85, 23);
 		}
-		return btnNewButton;
+		return newStudent;
 	}
-	private JButton getBtnNewButton_1() {
-		if (btnNewButton_1 == null) {
-			btnNewButton_1 = new JButton("New button");
-			btnNewButton_1.setBounds(351, 305, 89, 23);
-			btnNewButton_1.addActionListener(new ActionListener() {
+	private JButton getDeleteStudent() {
+		if (deleteStudent == null) {
+			deleteStudent = new JButton("Eliminar");
+			deleteStudent.setBounds(351, 326, 89, 23);
+			deleteStudent.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 				}
 			});
 		}
-		return btnNewButton_1;
+		return deleteStudent;
 	}
 	private JButton getButton() {
 		if (button == null) {
 			button = new JButton("New button");
-			button.setBounds(252, 305, 89, 23);
+			button.setBounds(252, 326, 89, 23);
 		}
 		return button;
 	}
-	private JPanel getPanel_4() {
-		if (panel_4 == null) {
-			panel_4 = new JPanel();
-			panel_4.setBorder(new TitledBorder(null, "Nuevo estudiante", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
-			panel_4.setBounds(10, 11, 236, 344);
-			panel_4.setLayout(null);
-			panel_4.add(getLblNombre());
-			panel_4.add(getLblApellidos());
-			panel_4.add(getLblCi());
-			panel_4.add(getNombre());
-			panel_4.add(getSegundoApellido());
-			panel_4.add(getPrimerApellido());
-			panel_4.add(getTxtNumeroDeCarnet());
-			panel_4.add(getLblNewLabel());
-			panel_4.add(getRdbtnFemenina());
-			panel_4.add(getRdbtnMasculino());
-			panel_4.add(getComboBox_1());
-			panel_4.add(getBtnNewButton());
-			panel_4.add(getLblEstado());
+	private JPanel getNewStudentPanel() {
+		if (newStudentPanel == null) {
+			newStudentPanel = new JPanel();
+			newStudentPanel.setBorder(new TitledBorder(null, "Nuevo estudiante", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
+			newStudentPanel.setBounds(10, 10, 240, 360);
+			newStudentPanel.setLayout(null);
+			newStudentPanel.add(getLblStudentName());
+			newStudentPanel.add(getLblLastName());
+			newStudentPanel.add(getLblStudentID());
+			newStudentPanel.add(getStudentName());
+			newStudentPanel.add(getStudentLastName());
+			newStudentPanel.add(getStudentID());
+			newStudentPanel.add(getStudentSecLastName());
+			newStudentPanel.add(getLblSecLastName());
+			newStudentPanel.add(getStudentFemale());
+			newStudentPanel.add(getStudentMale());
+			newStudentPanel.add(getStudentState());
+			newStudentPanel.add(getNewStudent());
+			newStudentPanel.add(getLblStudentState());
 		}
-		return panel_4;
+		return newStudentPanel;
 	}
-	private JLabel getLblEstado() {
-		if (lblEstado == null) {
-			lblEstado = new JLabel("Estado:");
-			lblEstado.setBounds(20, 220, 46, 14);
+	private JLabel getLblStudentState() {
+		if (lblStudentState == null) {
+			lblStudentState = new JLabel("Estado:");
+			lblStudentState.setBounds(20, 220, 46, 14);
 		}
-		return lblEstado;
+		return lblStudentState;
+	}
+	private JPanel getPanel_2() {
+		if (newWorkerPanel == null) {
+			newWorkerPanel = new JPanel();
+			newWorkerPanel.setBorder(new TitledBorder(null, "Nuevo trabajador", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			newWorkerPanel.setBounds(10, 10, 240, 360);
+			newWorkerPanel.setLayout(null);
+			newWorkerPanel.add(getLblWorkerLastName());
+			newWorkerPanel.add(getWorkerName());
+			newWorkerPanel.add(getLblworkerSecLastName());
+			newWorkerPanel.add(getWorkerLastName());
+			newWorkerPanel.add(getLblWorkerName());
+			newWorkerPanel.add(getLblWorkerID());
+			newWorkerPanel.add(getWorkerSecLastName());
+			newWorkerPanel.add(getWorkerID());
+			newWorkerPanel.add(getWorkerState());
+			newWorkerPanel.add(getLblWorkerState());
+			newWorkerPanel.add(getWorkerFemale());
+			newWorkerPanel.add(getWorkerMale());
+			newWorkerPanel.add(getNewWorker());
+		}
+		return newWorkerPanel;
+	}
+	private JLabel getLblWorkerState() {
+		if (lblWorkerState == null) {
+			lblWorkerState = new JLabel("Estado:");
+			lblWorkerState.setBounds(20, 220, 59, 14);
+		}
+		return lblWorkerState;
+	}
+	private JRadioButton getWorkerFemale() {
+		if (workerFemale == null) {
+			workerFemale = new JRadioButton("Femenina");
+			workerFemale.setBounds(135, 237, 86, 23);
+		}
+		return workerFemale;
+	}
+	private JRadioButton getWorkerMale() {
+		if (workerMale == null) {
+			workerMale = new JRadioButton("Masculino");
+			workerMale.setBounds(135, 265, 86, 23);
+		}
+		return workerMale;
+	}
+	private JButton getNewWorker() {
+		if (newWorker == null) {
+			newWorker = new JButton("Agregar");
+			newWorker.setBounds(135, 326, 85, 23);
+		}
+		return newWorker;
 	}
 }

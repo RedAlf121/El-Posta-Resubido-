@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import java.awt.Color;
+import com.toedter.calendar.JDateChooser;
 
 public class Personal extends JDialog {
 	private JTabbedPane tabbedPane;
@@ -63,18 +64,24 @@ public class Personal extends JDialog {
 	private JRadioButton workerMale;
 	private JButton newWorker;
 	private JPanel workerListPanel;
+	private JScrollPane scrollPane_1;
+	private JTable workerListTable;
+	private JButton btnEliminar;
+	private JButton btnNewButton;
+	private JDateChooser comeBackDateChooser;
+	private JLabel lblcomeBackDate;
 	
 
 	
 	public Personal() {
-		setBounds(100, 100, 750, 450);
+		setBounds(100, 100, 750, 465);
 		getContentPane().setLayout(null);
 		getContentPane().add(getTabbedPane());
 	}
 	private JTabbedPane getTabbedPane() {
 		if (tabbedPane == null) {
 			tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-			tabbedPane.setBounds(0, 0, 734, 411);
+			tabbedPane.setBounds(0, 0, 734, 426);
 			tabbedPane.addTab("Estudiante", null, getStudentPanel(), "");
 			tabbedPane.addTab("Trabajador", null, getWorkerPanel(), null);
 		}
@@ -295,7 +302,7 @@ public class Personal extends JDialog {
 		if (studentListPanel == null) {
 			studentListPanel = new JPanel();
 			studentListPanel.setBorder(new TitledBorder(null, "Listado de estudiantes", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
-			studentListPanel.setBounds(269, 11, 450, 360);
+			studentListPanel.setBounds(270, 10, 450, 377);
 			studentListPanel.setLayout(null);
 			studentListPanel.add(getScrollPane());
 			studentListPanel.add(getButton());
@@ -306,7 +313,7 @@ public class Personal extends JDialog {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(10, 25, 430, 269);
+			scrollPane.setBounds(10, 25, 430, 290);
 			scrollPane.setViewportView(getStudentListTable());
 		}
 		return scrollPane;
@@ -314,6 +321,7 @@ public class Personal extends JDialog {
 	private JTable getStudentListTable() {
 		if (studentListTable == null) {
 			studentListTable = new JTable();
+			studentListTable.setFillsViewportHeight(true);
 			studentListTable.setModel(new DefaultTableModel(
 				new Object[][] {
 					{null, null, null, null, null, null},
@@ -334,14 +342,14 @@ public class Personal extends JDialog {
 	private JButton getNewStudent() {
 		if (newStudent == null) {
 			newStudent = new JButton("Agregar");
-			newStudent.setBounds(135, 326, 85, 23);
+			newStudent.setBounds(135, 343, 85, 23);
 		}
 		return newStudent;
 	}
 	private JButton getDeleteStudent() {
 		if (deleteStudent == null) {
 			deleteStudent = new JButton("Eliminar");
-			deleteStudent.setBounds(351, 326, 89, 23);
+			deleteStudent.setBounds(351, 343, 89, 23);
 			deleteStudent.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 				}
@@ -352,7 +360,7 @@ public class Personal extends JDialog {
 	private JButton getButton() {
 		if (button == null) {
 			button = new JButton("New button");
-			button.setBounds(252, 326, 89, 23);
+			button.setBounds(252, 343, 89, 23);
 		}
 		return button;
 	}
@@ -360,7 +368,7 @@ public class Personal extends JDialog {
 		if (newStudentPanel == null) {
 			newStudentPanel = new JPanel();
 			newStudentPanel.setBorder(new TitledBorder(null, "Nuevo estudiante", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
-			newStudentPanel.setBounds(10, 10, 240, 360);
+			newStudentPanel.setBounds(10, 10, 240, 377);
 			newStudentPanel.setLayout(null);
 			newStudentPanel.add(getLblStudentName());
 			newStudentPanel.add(getLblLastName());
@@ -389,7 +397,7 @@ public class Personal extends JDialog {
 		if (newWorkerPanel == null) {
 			newWorkerPanel = new JPanel();
 			newWorkerPanel.setBorder(new TitledBorder(null, "Nuevo trabajador", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			newWorkerPanel.setBounds(10, 10, 240, 360);
+			newWorkerPanel.setBounds(10, 10, 240, 377);
 			newWorkerPanel.setLayout(null);
 			newWorkerPanel.add(getLblWorkerLastName());
 			newWorkerPanel.add(getWorkerName());
@@ -404,6 +412,8 @@ public class Personal extends JDialog {
 			newWorkerPanel.add(getWorkerFemale());
 			newWorkerPanel.add(getWorkerMale());
 			newWorkerPanel.add(getNewWorker());
+			newWorkerPanel.add(getComeBackDateChooser());
+			newWorkerPanel.add(getLblcomeBackDate());
 		}
 		return newWorkerPanel;
 	}
@@ -431,7 +441,7 @@ public class Personal extends JDialog {
 	private JButton getNewWorker() {
 		if (newWorker == null) {
 			newWorker = new JButton("Agregar");
-			newWorker.setBounds(135, 326, 85, 23);
+			newWorker.setBounds(135, 343, 85, 23);
 		}
 		return newWorker;
 	}
@@ -439,9 +449,69 @@ public class Personal extends JDialog {
 		if (workerListPanel == null) {
 			workerListPanel = new JPanel();
 			workerListPanel.setBorder(new TitledBorder(null, "Lista de trabajadores", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
-			workerListPanel.setBounds(260, 10, 459, 360);
+			workerListPanel.setBounds(270, 10, 450, 377);
 			workerListPanel.setLayout(null);
+			workerListPanel.add(getScrollPane_1_1());
+			workerListPanel.add(getBtnEliminar());
+			workerListPanel.add(getBtnNewButton());
 		}
 		return workerListPanel;
+	}
+	private JScrollPane getScrollPane_1_1() {
+		if (scrollPane_1 == null) {
+			scrollPane_1 = new JScrollPane();
+			scrollPane_1.setBounds(10, 25, 430, 290);
+			scrollPane_1.setViewportView(getTable_1());
+		}
+		return scrollPane_1;
+	}
+	private JTable getTable_1() {
+		if (workerListTable == null) {
+			workerListTable = new JTable();
+			workerListTable.setFillsViewportHeight(true);
+			workerListTable.setModel(new DefaultTableModel(
+				new Object[][] {
+					{null, null, null, null, null, null},
+					{null, null, null, null, null, null},
+					{null, null, null, null, null, null},
+					{null, null, null, null, null, null},
+					{null, null, null, null, null, null},
+					{null, null, null, null, null, null},
+					{null, null, null, null, null, null},
+				},
+				new String[] {
+					"New column", "New column", "New column", "New column", "New column", "New column"
+				}
+			));
+		}
+		return workerListTable;
+	}
+	private JButton getBtnEliminar() {
+		if (btnEliminar == null) {
+			btnEliminar = new JButton("Eliminar");
+			btnEliminar.setBounds(351, 343, 89, 23);
+		}
+		return btnEliminar;
+	}
+	private JButton getBtnNewButton() {
+		if (btnNewButton == null) {
+			btnNewButton = new JButton("New button");
+			btnNewButton.setBounds(252, 343, 89, 23);
+		}
+		return btnNewButton;
+	}
+	private JDateChooser getComeBackDateChooser() {
+		if (comeBackDateChooser == null) {
+			comeBackDateChooser = new JDateChooser();
+			comeBackDateChooser.setBounds(20, 286, 99, 20);
+		}
+		return comeBackDateChooser;
+	}
+	private JLabel getLblcomeBackDate() {
+		if (lblcomeBackDate == null) {
+			lblcomeBackDate = new JLabel("D\u00EDa de retorno");
+			lblcomeBackDate.setBounds(20, 268, 99, 14);
+		}
+		return lblcomeBackDate;
 	}
 }
